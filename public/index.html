@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="./styles.css" />
         <link rel="icon" href="./favicon.png" />
+        <title>figment crocs</title>
     </head>
     <body>
         <div id="page-stats">
             <p>figment crocs</p>
             <p>total visitors: <span id="total-visitors"></span></p>
             <p>visitors today: <span id="visitors-today"></span></p>
-            <p id="bomb-count-cont" hidden>times blown up: <span id="bomb-count"></span></p>
+            <p id="bomb-count-cont" style="color: white">times blown up: <span id="bomb-count"></span></p>
         </div>
         <div id="img-cont">
             <img src="https://u-mercari-images.mercdn.net/photos/m74649345082_3.jpg?1762219564" />
@@ -30,7 +33,11 @@
                 </audio>
             </button>
             <button id="mystery">???</button>
-            <button id="randomize">randomize</button>
+            <button id="randomize">randomize
+                <audio id="randomizeSound">
+                    <source src="./soundLibrary/sound0.mp3" type="audio/mpeg" />
+                </audio>
+            </button>
             <button id="explosion">BLOW UP
                 <audio id="bombSound">
                     <source src="./explosion.mp3" type="audio/mpeg" />

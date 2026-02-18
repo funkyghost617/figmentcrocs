@@ -54,6 +54,7 @@ mysteryBtn.addEventListener("click", (e) => {
     window.location.href = "/404.html";
 })
 const randomizeBtn = document.querySelector("#randomize");
+const randomizeSound = document.querySelector("#randomizeSound");
 randomizeBtn.addEventListener("click", (e) => {
     const oldImg = document.querySelector("#img-cont > img:not(.hidden)");
     const possibleImgs = document.querySelectorAll("#img-cont > img.hidden:not(:last-child)");
@@ -61,6 +62,7 @@ randomizeBtn.addEventListener("click", (e) => {
     img = possibleImgs[newIndex];
     img.classList.remove("hidden");
     oldImg.classList.add("hidden");
+    randomizeSound.play();
 })
 const explosionBtn = document.querySelector("#explosion");
 const bombSound = document.querySelector("#bombSound");
@@ -79,7 +81,7 @@ explosionBtn.addEventListener("click", async (e) => {
     await updateDoc(bombCountRef, { count: bombCountDoc.data()["count"] + 1 });
     bombCountDoc = await getDoc(bombCountRef);
     bombCount.textContent = bombCountDoc.data()["count"];
-    bombCountCont.hidden = false;
+    bombCountCont.setAttribute("style", "color: black");
 })
 
 const currentDate = new Date();
