@@ -43,64 +43,73 @@ img {
 
 #main-btns > button {
     font-size: 1.5rem;
-}
-
-.squeezeBtn {
-    height: 2.8em;
-    width: 9em;
-    background: transparent;
-    -webkit-animation: jello-horizontal 0.9s both;
-    animation: jello-horizontal 0.9s both;
-    border: 2px solid #016dd9;
-    outline: none;
-    color: #016dd9;
     cursor: pointer;
-    font-size: 17px;
 }
 
-.squeezeBtn:hover {
-    background: #016dd9;
-    color: #ffffff;
-    animation: squeeze3124 0.9s both;
+#main-btns > button:hover {
+    background-color: orange;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-@keyframes squeeze3124 {
-    0% {
-        -webkit-transform: scale3d(1, 1, 1);
-        transform: scale3d(1, 1, 1);
-    }
+#celebration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    background-color: purple;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    font-size: 3rem;
+}
 
-    30% {
-        -webkit-transform: scale3d(1.25, 0.75, 1);
-        transform: scale3d(1.25, 0.75, 1);
-    }
+#celebration img {
+    width: 600px;
+    height: 300px;
+}
 
-    40% {
-        -webkit-transform: scale3d(0.75, 1.25, 1);
-        transform: scale3d(0.75, 1.25, 1);
-    }
+#celebration > img:last-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 5;
+    flex-flow: 0;
+}
 
-    50% {
-        -webkit-transform: scale3d(1.15, 0.85, 1);
-        transform: scale3d(1.15, 0.85, 1);
-    }
+#celebration-bomb-1 {
+    position: relative;
+    left: 350px;
+}
 
-    65% {
-        -webkit-transform: scale3d(0.95, 1.05, 1);
-        transform: scale3d(0.95, 1.05, 1);
-    }
+#celebration-bomb-2 {
+    position: relative;
+    left: -350px;
+}
 
-    75% {
-        -webkit-transform: scale3d(1.05, 0.95, 1);
-        transform: scale3d(1.05, 0.95, 1);
-    }
+#celebration button {
+    z-index: 6;
+    font-size: 3rem;
+    cursor: pointer;
+}
 
-    100% {
-        -webkit-transform: scale3d(1, 1, 1);
-        transform: scale3d(1, 1, 1);
-    }
+#celebration button:hover {
+    background-color: orange;
+}
+
+#new-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.5;
+    z-index: -1;
 }

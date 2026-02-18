@@ -75,7 +75,7 @@ explosionBtn.addEventListener("click", async (e) => {
     explosionGif.classList.remove("hidden");
     setTimeout(() => {
         explosionGif.classList.add("hidden");
-    }, 2000);
+    }, 1800);
     const bombCountRef = doc(db, "interactCount", "bombs");
     let bombCountDoc = await getDoc(bombCountRef);
     await updateDoc(bombCountRef, { count: bombCountDoc.data()["count"] + 1 });
@@ -112,6 +112,35 @@ async function processVisit() {
             console.log("all done!");
         })
     }
+    const celebrationDiv = document.querySelector("#celebration");
+    const celebrationCheckDocs = await getDocs(collection(db, "userData"));
+    const celebrationCheckValueDoc = await getDoc(doc(db, "interactCount", "visitorGoal"));
+    const celebrationCheckValue = celebrationCheckValueDoc.data()["goal"];
+    let celebrationCheck = 0;
+    celebrationCheckDocs.forEach((d) => {
+        celebrationCheck += d.data()["numUsers"];
+    })
+    if (celebrationCheck == celebrationCheckValue) {
+        celebrationDiv.classList.remove("hidden");
+        const celebrationSpan = document.querySelector("#celebration-number");
+        celebrationSpan.textContent = celebrationCheck;
+        const celebrationSound = document.querySelector("#celebrationSound");
+        celebrationSound.play();
+        const continueBtn = document.querySelector("#celebration button");
+        setTimeout(() => {
+            continueBtn.classList.remove("hidden");
+        }, 15750);
+        continueBtn.addEventListener("click", (e) => {
+            celebrationDiv.classList.add("hidden");
+            const body = document.querySelector("body");
+            const newBackground = document.createElement("img");
+            newBackground.setAttribute("src", "./celebration/confetti.gif");
+            newBackground.setAttribute("id", "new-background");
+            body.insertAdjacentElement("afterbegin", newBackground);
+        })
+        await updateDoc(doc(db, "interactCount", "visitorGoal"), { goal: celebrationCheck*10 })
+    }
+
     updateStats();
 }
 processVisit();
@@ -134,4 +163,3 @@ async function updateStats() {
     visitorsTodaySpan.textContent = visitorsToday;
 }
 setInterval(updateStats, 5000);
-
