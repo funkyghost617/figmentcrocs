@@ -9,6 +9,7 @@
             <p>figment crocs</p>
             <p>total visitors: <span id="total-visitors"></span></p>
             <p>visitors today: <span id="visitors-today"></span></p>
+            <p id="bomb-count-cont" hidden>times blown up: <span id="bomb-count"></span></p>
         </div>
         <div id="img-cont">
             <img src="https://u-mercari-images.mercdn.net/photos/m74649345082_3.jpg?1762219564" />
@@ -18,8 +19,16 @@
             <img class="hidden" id="explosion-gif" src="" />
         </div>
         <div id="main-btns">
-            <button id="spin">SPIN!</button>
-            <button id="pulsate">PULSATE!</button>
+            <button id="spin">SPIN!
+                <audio id="spinSound">
+                    <source src="./soundLibrary/soundSpin.mp3" type="audio/mpeg" />
+                </audio>
+            </button>
+            <button id="pulsate">PULSATE!
+                <audio id="pulsateSound">
+                    <source type="audio/mpeg" />
+                </audio>
+            </button>
             <button id="mystery">???</button>
             <button id="randomize">randomize</button>
             <button id="explosion">BLOW UP

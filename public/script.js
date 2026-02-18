@@ -21,19 +21,24 @@ const db = getFirestore(app);
 
 let img = document.querySelector("img");
 const spinBtn = document.querySelector("#spin");
+const spinSound = document.querySelector("#spinSound");
 spinBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    spinSound.play();
     img.animate([
         { transform: "rotate(0deg)" },
         { transform: "rotate(360deg)" }
     ], {
-        duration: 1000,
+        duration: 1500,
         iterations: 1
     });
 })
 const pulsateBtn = document.querySelector("#pulsate");
+const pulsateSound = document.querySelector("#pulsateSound");
 pulsateBtn.addEventListener("click", (e) => {
     e.preventDefault();
+    pulsateSound.setAttribute("src", `./soundLibrary/sound${Math.floor(Math.random()*4)}.mp3`);
+    pulsateSound.play();
     img.animate([
         { transform: "scale(1)" },
         { transform: "scale(0.7, 2)" },
@@ -60,13 +65,21 @@ randomizeBtn.addEventListener("click", (e) => {
 const explosionBtn = document.querySelector("#explosion");
 const bombSound = document.querySelector("#bombSound");
 const explosionGif = document.querySelector("#explosion-gif");
-explosionBtn.addEventListener("click", (e) => {
+const bombCountCont = document.querySelector("#bomb-count-cont");
+const bombCount = document.querySelector("#bomb-count");
+explosionBtn.addEventListener("click", async (e) => {
     bombSound.play();
     explosionGif.setAttribute("src", "./explosionGif.gif" + "?" + new Date().getTime());
     explosionGif.classList.remove("hidden");
     setTimeout(() => {
         explosionGif.classList.add("hidden");
     }, 2000);
+    const bombCountRef = doc(db, "interactCount", "bombs");
+    let bombCountDoc = await getDoc(bombCountRef);
+    await updateDoc(bombCountRef, { count: bombCountDoc.data()["count"] + 1 });
+    bombCountDoc = await getDoc(bombCountRef);
+    bombCount.textContent = bombCountDoc.data()["count"];
+    bombCountCont.hidden = false;
 })
 
 const currentDate = new Date();
