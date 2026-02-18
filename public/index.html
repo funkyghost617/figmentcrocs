@@ -5,11 +5,28 @@
         <link rel="icon" href="./favicon.png" />
     </head>
     <body>
-        <img src="https://u-mercari-images.mercdn.net/photos/m74649345082_3.jpg?1762219564" />
+        <div id="page-stats">
+            <p>figment crocs</p>
+            <p>total visitors: <span id="total-visitors"></span></p>
+            <p>visitors today: <span id="visitors-today"></span></p>
+        </div>
+        <div id="img-cont">
+            <img src="https://u-mercari-images.mercdn.net/photos/m74649345082_3.jpg?1762219564" />
+            <img class="hidden" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUeaMpqO7wrR1aWGPlil7ecJmcFHRojdrLDg&s" />
+            <img class="hidden" src="https://u-mercari-images.mercdn.net/thumb/photos/m97275278859_1.jpg?width=2560&quality=75&_=1762371707" />
+            <img class="hidden" src="https://www.laughingplace.com/uploads/media/2025/11/celebrate-imagination-new-figment-crocs-loungefly-1.png/w2048" />
+            <img class="hidden" id="explosion-gif" src="" />
+        </div>
         <div id="main-btns">
-            <button id="spin" type="button">SPIN!</button>
+            <button id="spin">SPIN!</button>
             <button id="pulsate">PULSATE!</button>
             <button id="mystery">???</button>
+            <button id="randomize">randomize</button>
+            <button id="explosion">BLOW UP
+                <audio id="bombSound">
+                    <source src="./explosion.mp3" type="audio/mpeg" />
+                </audio>
+            </button>
         </div>
         <script type="module" src="./script.js"></script>
     </body>

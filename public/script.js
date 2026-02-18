@@ -19,7 +19,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const img = document.querySelector("img");
+let img = document.querySelector("img");
 const spinBtn = document.querySelector("#spin");
 spinBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -36,8 +36,8 @@ pulsateBtn.addEventListener("click", (e) => {
     e.preventDefault();
     img.animate([
         { transform: "scale(1)" },
-        { transform: "scale(1.8)" },
-        { transform: "scale(1)" },
+        { transform: "scale(0.7, 2)" },
+        { transform: "scale(2, 0.7)" },
         { transform: "scale(1)" },
     ], {
         duration: 500,
@@ -47,6 +47,26 @@ pulsateBtn.addEventListener("click", (e) => {
 const mysteryBtn = document.querySelector("#mystery");
 mysteryBtn.addEventListener("click", (e) => {
     window.location.href = "/404.html";
+})
+const randomizeBtn = document.querySelector("#randomize");
+randomizeBtn.addEventListener("click", (e) => {
+    const oldImg = document.querySelector("#img-cont > img:not(.hidden)");
+    const possibleImgs = document.querySelectorAll("#img-cont > img.hidden:not(:last-child)");
+    const newIndex = Math.floor(Math.random()*(possibleImgs.length));
+    img = possibleImgs[newIndex];
+    img.classList.remove("hidden");
+    oldImg.classList.add("hidden");
+})
+const explosionBtn = document.querySelector("#explosion");
+const bombSound = document.querySelector("#bombSound");
+const explosionGif = document.querySelector("#explosion-gif");
+explosionBtn.addEventListener("click", (e) => {
+    bombSound.play();
+    explosionGif.setAttribute("src", "./explosionGif.gif" + "?" + new Date().getTime());
+    explosionGif.classList.remove("hidden");
+    setTimeout(() => {
+        explosionGif.classList.add("hidden");
+    }, 2000);
 })
 
 const currentDate = new Date();
@@ -65,5 +85,26 @@ async function processVisit() {
             console.log("all done!");
         })
     }
+    updateStats();
 }
 processVisit();
+let totalVisitors;
+let visitorsToday;
+const totalVisitorsSpan = document.querySelector("#total-visitors");
+const visitorsTodaySpan = document.querySelector("#visitors-today");
+async function updateStats() {
+    totalVisitors = 0;
+    const allVisitDates = await getDocs(collection(db, "userData"));
+    allVisitDates.forEach((date) => {
+        totalVisitors += date.data()["numUsers"];
+    })
+    totalVisitorsSpan.textContent = totalVisitors;
+
+    const currentDateQuery = await getDocs(query(collection(db, "userData"), where("date", "==", currentISODate)));
+    currentDateQuery.forEach(async (d) => {
+        visitorsToday = d.data()["numUsers"];
+    })
+    visitorsTodaySpan.textContent = visitorsToday;
+}
+setInterval(updateStats, 5000);
+
