@@ -21,6 +21,7 @@
   "homepage": "https://github.com/funkyghost617/figmentcrocs#readme",
   "dependencies": {
     "express": "^5.2.1",
+    "firebase": "^12.9.0",
     "fs": "^0.0.1-security",
     "path": "^0.12.7"
   }
