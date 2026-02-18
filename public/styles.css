@@ -6,12 +6,17 @@ body {
     overflow: hidden;
 }
 
+#page-stats {
+    position: relative;
+    left: calc(50vw - 150px);
+}
+
 #img-cont {
     width: 100vw;
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    margin-top: 200px;
+    margin-top: 150px;
 }
 
 img {
