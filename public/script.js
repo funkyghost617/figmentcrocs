@@ -83,6 +83,18 @@ explosionBtn.addEventListener("click", async (e) => {
     bombCount.textContent = bombCountDoc.data()["count"];
     bombCountCont.setAttribute("style", "color: black");
 })
+const displayImgs = document.querySelectorAll("#img-cont > img:not(:last-child)");
+const cursedSound = document.querySelector("#cursedSound");
+displayImgs.forEach((image) => {
+    image.addEventListener("click", (e) => {
+        const oldSrc = image.getAttribute("src");
+        image.setAttribute("src", "./figmentCursed.png");
+        cursedSound.play();
+        setTimeout(() => {
+            image.setAttribute("src", oldSrc);
+        }, 1200);
+    })
+})
 
 const currentDate = new Date();
 const currentISODate = currentDate.toISOString().split("T")[0];
