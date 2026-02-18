@@ -117,6 +117,14 @@ img {
 }
 
 @media (max-width: 748px) {
+    img {
+        width: 80%;
+    }
+
+    #main-btns {
+        width: 90%
+    }
+    
     #celebration {
         padding: 0 20px;
         font-size: 1rem;
