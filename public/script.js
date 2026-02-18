@@ -138,7 +138,7 @@ async function processVisit() {
             newBackground.setAttribute("id", "new-background");
             body.insertAdjacentElement("afterbegin", newBackground);
         })
-        await updateDoc(doc(db, "interactCount", "visitorGoal"), { goal: celebrationCheck + 1 })
+        await updateDoc(doc(db, "interactCount", "visitorGoal"), { goal: celebrationCheck*10 })
     }
 
     updateStats();
