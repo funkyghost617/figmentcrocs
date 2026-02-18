@@ -163,3 +163,16 @@ async function updateStats() {
     visitorsTodaySpan.textContent = visitorsToday;
 }
 setInterval(updateStats, 5000);
+
+const zoomBtn = document.querySelector("#zoom");
+zoomBtn.addEventListener("click", (e) => {
+    const img = document.querySelector("#img-cont > img:not(.hidden)");
+    if (img.classList.contains("zoomed")) {
+        img.classList.remove("zoomed");
+        zoomBtn.textContent = "ZOOM!";
+    } else {
+        img.classList.add("zoomed");
+        zoomBtn.textContent = "again?";
+        bombSound.play();
+    }
+})
