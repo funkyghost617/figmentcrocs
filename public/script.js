@@ -19,12 +19,34 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const zoomBtn = document.querySelector("#zoom");
 const img = document.querySelector("img");
-zoomBtn.addEventListener("click", (e) => {
+const spinBtn = document.querySelector("#spin");
+spinBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    zoomBtn.remove();
-    img.style.width = "12%";
+    img.animate([
+        { transform: "rotate(0deg)" },
+        { transform: "rotate(360deg)" }
+    ], {
+        duration: 1000,
+        iterations: 1
+    });
+})
+const pulsateBtn = document.querySelector("#pulsate");
+pulsateBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    img.animate([
+        { transform: "scale(1)" },
+        { transform: "scale(1.8)" },
+        { transform: "scale(1)" },
+        { transform: "scale(1)" },
+    ], {
+        duration: 500,
+        iterations: 3
+    });
+})
+const mysteryBtn = document.querySelector("#mystery");
+mysteryBtn.addEventListener("click", (e) => {
+    window.location.href = "/404.html";
 })
 
 const currentDate = new Date();
