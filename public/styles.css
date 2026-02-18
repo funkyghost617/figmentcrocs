@@ -67,6 +67,7 @@ img {
     align-items: center;
     font-size: 3rem;
     text-align: center;
+    overflow: hidden;
 }
 
 #celebration img {
